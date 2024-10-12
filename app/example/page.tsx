@@ -23,7 +23,6 @@ export default function Home() {
 
           for await (const delta of readStreamableValue(output)) {
             setGeneration(currentGeneration => `${currentGeneration}${delta}`);
-
           }
         }}
       >
