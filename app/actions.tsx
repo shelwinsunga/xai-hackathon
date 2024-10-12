@@ -18,6 +18,14 @@ export async function generate(input: string) {
   (async () => {
     const { textStream } = await streamText({
       model: openai('grok-2-mini-public'),
+      system: `Output JSON Objects with the following keys: "name", "message", "minutesAgo"
+      Example:
+      {
+        "name": "Alice",
+        "message": "Hello, how are you?",
+        "minutesAgo": 5
+      }`,
+
       prompt: input,
     });
 
