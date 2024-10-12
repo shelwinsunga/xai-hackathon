@@ -35,6 +35,7 @@ export default function FRQ({ question, criteria }: { question: string, criteria
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
+    
     setGeneration('');
     setIsLoading(true);
     setShowOverlay(true);
@@ -187,6 +188,30 @@ export default function FRQ({ question, criteria }: { question: string, criteria
           </Button>
         </CardFooter>
         </Card>
+        <div className="ml-4 w-[200px]">
+        {gradeResults.length > 0 && (
+          <div className="flex flex-col">
+            <AnimatePresence>
+              {gradeResults.map((result, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
+                  transition={{ duration: 0.3, delay: index * 0.1 }}
+                  className="mb-1"
+                >
+                  {result.met ? (
+                    <CheckIcon className="h-6 w-6" />
+                  ) : (
+                    <XIcon className="h-6 w-6" />
+                  )}
+                </motion.div>
+              ))}
+            </AnimatePresence>
+          </div>
+        )}
+      </div>
 
       {/* <Button
         onClick={async () => {
