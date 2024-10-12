@@ -27,16 +27,15 @@ export default function FRQ({ question, criteria }: { question: string, criteria
   const [isGraded, setIsGraded] = useState(false);
   const [gradeSteps, setGradeSteps] = useState([]);
   const [gradeResults, setGradeResults] = useState([]);
-  console.log(generation);
 
   useEffect(() => {
     setStructuredOutput(parseIncompleteJSON(generation));
   }, [generation]);
 
-  console.log(structuredOutput);
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
+    setGeneration('');
     setIsLoading(true);
     setShowOverlay(true);
     setIsGraded(false);
@@ -57,8 +56,6 @@ export default function FRQ({ question, criteria }: { question: string, criteria
     setIsGraded(false);
     setShowOverlay(false);
   };
-
-  console.log(structuredOutput);
 
 
   return (
@@ -108,7 +105,6 @@ export default function FRQ({ question, criteria }: { question: string, criteria
                             )}
                              </motion.div>
                         </motion.div>
-                        </motion.div>
                         <motion.span
                           initial={{ opacity: 0, x: -5 }}
                           animate={{ opacity: 1, x: 0 }}
@@ -129,8 +125,24 @@ export default function FRQ({ question, criteria }: { question: string, criteria
                           />
                         </motion.span>
                       </motion.div>
+                      </motion.div>
                     ))}
                 </div>
+                {isGraded && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -20 }}
+                    transition={{ duration: 0.3 }}
+                    className="w-full flex justify-end mt-2"
+                  >
+                    <Button
+                      onClick={handleCloseOverlay}
+                    >
+                      Close
+                    </Button>
+                  </motion.div>
+                )}
             </div>
         </motion.div>
       )}
