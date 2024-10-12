@@ -2,7 +2,8 @@
 import { allPosts } from "content-collections";
 import { MDXContent } from "@content-collections/mdx/react";
 import { Button } from "@/components/ui/button";
-const components = { Button };
+import FRQ from "@/components/frq";
+const components = { Button, FRQ };
 
 export default function App() {
   console.log(allPosts);
