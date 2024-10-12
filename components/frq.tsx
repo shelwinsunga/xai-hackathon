@@ -11,10 +11,11 @@ export default function FRQ({ question, criteria }: { question: string, criteria
   const [answer, setAnswer] = useState("");
   const [generation, setGeneration] = useState<string>('');
   const [structuredOutput, setStructuredOutput] = useState<any>(null);
-
+  console.log(generation);
   useEffect(() => {
     setStructuredOutput(parseIncompleteJSON(generation));
   }, [generation]);
+
 
   return (
     <div>
@@ -29,9 +30,10 @@ export default function FRQ({ question, criteria }: { question: string, criteria
 
       <Button
         onClick={async () => {
-          const { output } = await generate('hello');
+          const { output } = await generate(question, answer, criteria);
           for await (const delta of readStreamableValue(output)) {
             setGeneration(currentGeneration => `${currentGeneration}${delta}`);
+
           }
         }}
       >
@@ -40,13 +42,10 @@ export default function FRQ({ question, criteria }: { question: string, criteria
 
       <div>
         {structuredOutput && (
-          <ul>
-            <li>Name: {structuredOutput.name}</li>
-            <li>Message: {structuredOutput.message}</li>
-            <li>Minutes Ago: {structuredOutput.minutesAgo}</li>
-          </ul>
+            <div>{JSON.stringify(structuredOutput[0])}</div>
         )}
       </div>
+
     </div>
   );
 }   
