@@ -22,7 +22,7 @@ import {
     TooltipContent,
     TooltipProvider,
     TooltipTrigger,
-  } from "@/components/ui/tooltip"
+} from "@/components/ui/tooltip"
   
 
 export default function FRQ({ question, criteria }: { question: string, criteria: any }) {
@@ -68,8 +68,8 @@ export default function FRQ({ question, criteria }: { question: string, criteria
 
 
   return (
-    <div className="flex">
-      <Card className="w-[590px] h-[520px] px-[20px] py-[20px] bg-muted relative overflow-hidden">
+    <div className="flex w-full justify-center mt-9">
+      <Card className="w-full h-[520px] px-[20px] py-[20px] bg-muted relative overflow-hidden">
       <AnimatePresence>
       {showOverlay && (
         <motion.div
@@ -198,7 +198,7 @@ export default function FRQ({ question, criteria }: { question: string, criteria
           </Button>
         </CardFooter>
         </Card>
-        <div className="ml-4 w-[200px]">
+        {/* <div className="ml-4 w-[200px]">
         {gradeResults.length > 0 && (
           <div className="flex flex-col">
             <AnimatePresence>
@@ -221,7 +221,7 @@ export default function FRQ({ question, criteria }: { question: string, criteria
             </AnimatePresence>
           </div>
         )}
-      </div>
+      </div> */}
 
       {/* <Button
         onClick={async () => {
