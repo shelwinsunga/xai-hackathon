@@ -16,7 +16,13 @@ import {
     PopoverContent,
     PopoverTrigger,
 } from "@/components/ui/popover"
-
+import {
+    Tooltip,
+    TooltipContent,
+    TooltipProvider,
+    TooltipTrigger,
+  } from "@/components/ui/tooltip"
+  
 
 export default function FRQ({ question, criteria }: { question: string, criteria: any }) {
   const [answer, setAnswer] = useState("");
@@ -152,7 +158,7 @@ export default function FRQ({ question, criteria }: { question: string, criteria
           <CardTitle>
             <div className="flex justify-between items-start">
               <div className="flex items-center">
-                <span className="text-sm text-muted-foreground font-medium">European History</span>
+                <span className="text-sm text-muted-foreground font-medium">LLM-Graded Question</span>
               </div>
               <span className="text-sm text-muted-foreground font-medium">
                 FRQ
