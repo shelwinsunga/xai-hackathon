@@ -51,6 +51,16 @@ export function parseIncompleteJSON(incompleteJSON: string): any[] {
     result.push(currentObject);
   }
 
+  // Pre-processing step to convert 'true' and 'false' strings to booleans in the 'met' field
+  result = result.map(obj => {
+    if (obj.met === 'true') {
+      obj.met = true;
+    } else if (obj.met === 'false') {
+      obj.met = false;
+    }
+    return obj;
+  });
+
   return result.map(obj => {
     return {
       criterion: obj.criterion || '',
