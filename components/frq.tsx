@@ -33,6 +33,7 @@ export default function FRQ({ question, criteria }: { question: string, criteria
   const [isGraded, setIsGraded] = useState(false);
   const [gradeSteps, setGradeSteps] = useState([]);
   const [gradeResults, setGradeResults] = useState([]);
+  console.log(gradeResults);
 
   useEffect(() => {
     setStructuredOutput(parseIncompleteJSON(generation));
@@ -198,7 +199,7 @@ export default function FRQ({ question, criteria }: { question: string, criteria
         {gradeResults.length > 0 && (
           <div className="flex flex-col">
             <AnimatePresence>
-              {gradeResults.map((result, index) => (
+              {structuredOutput.map((result, index) => (
                 <motion.div
                   key={index}
                   initial={{ opacity: 0, y: 20 }}
