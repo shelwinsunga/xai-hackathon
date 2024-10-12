@@ -163,7 +163,8 @@ export default function FRQ({ question, criteria }: { question: string, criteria
           <div className="flex flex-col justify-between h-full gap-6">
             <div className="w-full">
               <Label htmlFor="question" className="text-base font-medium w-full">
-                Analyze the impact of the Scientific Revolution on European society and intellectual thought during the period 1500-1700.</Label>
+                {question}
+              </Label>
             </div>
             <div>
               <Textarea
