@@ -1,23 +1,30 @@
 'use client';
 
 import { useState } from 'react';
-import { Button } from '@/components/ui/button';
-import { streamComponent } from './actions';
+import { generate } from './actions';
+import { readStreamableValue } from 'ai/rsc';
 
-export default function Page() {
-  const [component, setComponent] = useState<React.ReactNode>();
+// Allow streaming responses up to 30 seconds
+export const maxDuration = 30;
+
+export default function Home() {
+  const [generation, setGeneration] = useState<string>('');
 
   return (
     <div>
-      <form
-        onSubmit={async e => {
-          e.preventDefault();
-          setComponent(await streamComponent());
+      <button
+        onClick={async () => {
+          const { output } = await generate('Why is the sky blue?');
+
+          for await (const delta of readStreamableValue(output)) {
+            setGeneration(currentGeneration => `${currentGeneration}${delta}`);
+          }
         }}
       >
-        <Button>Stream Component</Button>
-      </form>
-      <div>{component}</div>
+        Ask
+      </button>
+
+      <div>{generation}</div>
     </div>
   );
 }
