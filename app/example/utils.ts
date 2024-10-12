@@ -43,5 +43,18 @@ export function parseIncompleteJSON(incompleteJSON: string): any[] {
     }
   }
 
-  return result;
+  // Handle incomplete object at the end
+  if (Object.keys(currentObject).length > 0 || currentKey) {
+    if (currentKey) {
+      currentObject[currentKey] = currentValue.trim();
+    }
+    result.push(currentObject);
+  }
+
+  return result.map(obj => {
+    return {
+      criterion: obj.criterion || '',
+      met: obj.met !== undefined ? obj.met : null
+    };
+  });
 }

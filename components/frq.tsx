@@ -42,7 +42,7 @@ export default function FRQ({ question, criteria }: { question: string, criteria
 
       <div>
         {structuredOutput && (
-            <div>{JSON.stringify(structuredOutput[0])}</div>
+            <div>{JSON.stringify(structuredOutput)}</div>
         )}
       </div>
 
