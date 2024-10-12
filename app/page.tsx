@@ -7,8 +7,6 @@ import { parseIncompleteJSON } from './utils';
 // Allow streaming responses up to 30 seconds
 export const maxDuration = 30;
 
-
-
 export default function Home() {
   const [generation, setGeneration] = useState<string>('');
   const [structuredOutput, setStructuredOutput] = useState<any>(null);
@@ -17,7 +15,6 @@ export default function Home() {
     setStructuredOutput(parseIncompleteJSON(generation));
   }, [generation]);
 
-  console.log(structuredOutput);
   return (
     <div>
       <button
@@ -33,7 +30,15 @@ export default function Home() {
         Ask
       </button>
 
-      <div>{generation}</div>
+      <div>
+        {structuredOutput && (
+          <ul>
+            <li>Name: {structuredOutput.name}</li>
+            <li>Message: {structuredOutput.message}</li>
+            <li>Minutes Ago: {structuredOutput.minutesAgo}</li>
+          </ul>
+        )}
+      </div>
     </div>
   );
 }
