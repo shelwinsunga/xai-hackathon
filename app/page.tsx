@@ -5,16 +5,21 @@ import { Button } from "@/components/ui/button";
 const components = { Button };
 
 export default function App() {
+  console.log(allPosts);
   return (
-    <main>
-      <ul>
-        {allPosts.map((post) => (
-          <li key={post._meta.path}>
-            <h2>{post.title}</h2>
-            <MDXContent code={post.mdx} components={components} />
-          </li>
-        ))}
-      </ul>
+    <main className="flex justify-center">
+      <div className="max-w-3xl w-full">
+        <ul>
+          {allPosts.map((post) => (
+            <li key={post._meta.path} className="mb-8">
+              <h2 className="text-2xl font-bold mb-4">{post.title}</h2>
+              <div className="prose">
+                <MDXContent code={post.mdx} components={components} />
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
     </main>
   );
 }
