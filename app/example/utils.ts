@@ -52,11 +52,14 @@ export function parseIncompleteJSON(incompleteJSON: string): any[] {
   }
 
   // Pre-processing step to convert 'true' and 'false' strings to booleans in the 'met' field
+  // and set 'pending' if not defined
   result = result.map(obj => {
     if (obj.met === 'true') {
       obj.met = true;
     } else if (obj.met === 'false') {
       obj.met = false;
+    } else if (obj.met === undefined) {
+      obj.met = 'pending';
     }
     return obj;
   });
@@ -64,7 +67,7 @@ export function parseIncompleteJSON(incompleteJSON: string): any[] {
   return result.map(obj => {
     return {
       criterion: obj.criterion || '',
-      met: obj.met !== undefined ? obj.met : null
+      met: obj.met !== undefined ? obj.met : 'pending'
     };
   });
 }

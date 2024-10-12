@@ -11,6 +11,7 @@ import { Card, CardHeader, CardTitle, CardContent, CardFooter } from '@/componen
 import { Label } from "@/components/ui/label";
 import { AnimatePresence } from 'framer-motion';
 import { motion } from 'framer-motion';
+import { Loader2 } from 'lucide-react';
 import {
     Popover,
     PopoverContent,
@@ -106,11 +107,13 @@ export default function FRQ({ question, criteria }: { question: string, criteria
                                transition={{ duration: 0.3, ease: "easeOut" }}
                                style={{ minWidth: '16px', minHeight: '16px' }}
                              >
-                           {criterion.met ? (
-                              <CheckIcon className="h-4 w-4 mr-2 text-green-500" />
-                            ) : (
-                              <XIcon className="h-4 w-4 mr-2 text-red-500" />
-                            )}
+                           {criterion.met === 'pending' ? (
+                             <Loader2 className="h-4 w-4 mr-2 text-muted-foreground animate-spin" />
+                           ) : criterion.met ? (
+                             <CheckIcon className="h-4 w-4 mr-2 text-green-500" />
+                           ) : (
+                             <XIcon className="h-4 w-4 mr-2 text-red-500" />
+                           )}
                              </motion.div>
                         </motion.div>
                         <motion.span
