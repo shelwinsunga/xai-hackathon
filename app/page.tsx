@@ -5,34 +5,10 @@ import { formatDate } from "./utils";
 import FRQ from "@/components/frq";
 import Link from "next/link";
 import meta from "./meta.json";
+import { toRoman } from "./utils";
 
 const components = { FRQ };
 
-    function toRoman(num: number): string {
-      const romanNumerals: { [key: number]: string } = {
-        1000: 'M',
-        900: 'CM',
-        500: 'D',
-        400: 'CD',
-        100: 'C',
-        90: 'XC',
-        50: 'L',
-        40: 'XL',
-        10: 'X',
-        9: 'IX',
-        5: 'V',
-        4: 'IV',
-        1: 'I',
-      };
-      let result = '';
-      for (const value of Object.keys(romanNumerals).map(Number).sort((a, b) => b - a)) {
-        while (num >= value) {
-          result += romanNumerals[value];
-          num -= value;
-        }
-      }
-      return result;
-    }
 
 export default function App() {
   const ordered = meta.ordered;
@@ -42,7 +18,7 @@ export default function App() {
       {/* Side Navigation */}
       <aside className="w-96 h-screen bg-primary text-primary-foreground p-6">
         <div className="flex flex-col gap-2 p-9">
-          <h2 className="text-4xl font-semibold mb-4 whitespace-normal break-words">{meta.title}</h2>
+          <h2 className="text-4xl font-semibold mb-12 whitespace-normal break-words">{meta.title}</h2>
               <h3 className="text-lg font-thin mb-2 border-b border-primary-foreground/20 pb-2">TABLE OF CONTENTS</h3>
                   <ul className="space-y-2">
                     {allPosts.map((post, index) => (
