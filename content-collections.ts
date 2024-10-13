@@ -10,6 +10,7 @@ const posts = defineCollection({
     author: z.string().optional(),
     date: z.string().optional(),
     subtitle: z.string().optional(),
+    order: z.number().optional(),
   }),
   transform: async (document, context) => {
     const mdx = await compileMDX(context, document);
