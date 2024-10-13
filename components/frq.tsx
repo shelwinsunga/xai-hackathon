@@ -1,4 +1,3 @@
-// @ts-nocheck
 'use client';
 
 import { useState, KeyboardEvent, useEffect } from "react";
@@ -115,9 +114,9 @@ export default function FRQ({ question, criteria }: { question: string, criteria
                            {criterion.met === 'pending' ? (
                              <Loader2 className="h-4 w-4 mr-2 text-muted-foreground animate-spin" />
                            ) : criterion.met ? (
-                             <CheckIcon className="h-4 w-4 mr-2 text-green-500" />
+                             <CheckIcon  />
                            ) : (
-                             <XIcon className="h-4 w-4 mr-2 text-red-500" />
+                             <XIcon/>
                            )}
                              </motion.div>
                         </motion.div>
