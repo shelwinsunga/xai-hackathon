@@ -8,23 +8,80 @@ import meta from "./meta.json";
 
 const components = { FRQ };
 
+    function toRoman(num: number): string {
+      const romanNumerals: { [key: number]: string } = {
+        1000: 'M',
+        900: 'CM',
+        500: 'D',
+        400: 'CD',
+        100: 'C',
+        90: 'XC',
+        50: 'L',
+        40: 'XL',
+        10: 'X',
+        9: 'IX',
+        5: 'V',
+        4: 'IV',
+        1: 'I',
+      };
+      let result = '';
+      for (const value of Object.keys(romanNumerals).map(Number).sort((a, b) => b - a)) {
+        while (num >= value) {
+          result += romanNumerals[value];
+          num -= value;
+        }
+      }
+      return result;
+    }
+
 export default function App() {
+  const ordered = meta.ordered;
+  
   return (
-    <div className="container mx-auto px-4 py-8">
-      <h1 className="text-4xl font-bold mb-8">{meta.title}</h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {allPosts.map((post) => (
-          <div key={post._meta.path} className="card bg-white shadow-md rounded-lg overflow-hidden">
-            <Link href={`/course/${post._meta.path}`} className="block p-6">
-              <h2 className="text-2xl font-bold mb-2">{post.title}</h2>
-              {post.subtitle && <p className="text-md text-muted-foreground mb-4">{post.subtitle}</p>}
-              <p className="text-sm text-muted-foreground">
-                By {post.author} • {formatDate(post.date || '')}
-              </p>
-            </Link>
-          </div>
-        ))}
-      </div>
+    <div className="flex">
+      {/* Side Navigation */}
+      <aside className="w-96 h-screen bg-primary text-primary-foreground p-6">
+        <div className="flex flex-col gap-2 p-9">
+          <h2 className="text-4xl font-semibold mb-4 whitespace-normal break-words">{meta.title}</h2>
+              <h3 className="text-lg font-thin mb-2 border-b border-primary-foreground/20 pb-2">TABLE OF CONTENTS</h3>
+                  <ul className="space-y-2">
+                    {allPosts.map((post, index) => (
+                      <li key={post._meta.path}>
+                        <Link href={`/course/${post._meta.path}`} className="hover:underline flex justify-between items-center">
+                          {ordered ? (
+                            <>
+                              <span className="truncate w-[90%]">{post.title}</span>
+                              <span>{toRoman(index + 1)}</span>
+                            </>
+                          ) : (
+                            post.title
+                          )}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+            </div>
+          </aside>
+
+      {/* Main Content */}
+      <main className="flex-1 p-8">
+        <h1 className="text-4xl font-bold mb-8">Table of Contents</h1>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {allPosts.map((post, index) => (
+            <div key={post._meta.path} className="card bg-white shadow-md border hover:shadow-xl hover:border-gray-900 rounded-lg overflow-hidden">
+              <Link href={`/course/${post._meta.path}`} className="block p-6">
+                <h2 className="text-2xl font-bold mb-2">
+                  {ordered ? `Chapter ${index + 1}: ${post.title}` : post.title}
+                </h2>
+                {post.subtitle && <p className="text-md text-muted-foreground mb-4">{post.subtitle}</p>}
+                <p className="text-sm text-muted-foreground">
+                  By {post.author} • {formatDate(post.date || '')}
+                </p>
+              </Link>
+            </div>
+          ))}
+        </div>
+      </main>
     </div>
   );
 }
