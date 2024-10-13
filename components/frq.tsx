@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, KeyboardEvent, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Textarea } from "@/components/ui/textarea";
 import { parseIncompleteJSON } from "@/app/utils";
 import { generate } from '@/app/actions';
@@ -11,17 +11,6 @@ import { Label } from "@/components/ui/label";
 import { AnimatePresence } from 'framer-motion';
 import { motion } from 'framer-motion';
 import { Loader2 } from 'lucide-react';
-import {
-    Popover,
-    PopoverContent,
-    PopoverTrigger,
-} from "@/components/ui/popover"
-import {
-    Tooltip,
-    TooltipContent,
-    TooltipProvider,
-    TooltipTrigger,
-} from "@/components/ui/tooltip"
 import ReactMarkdown from "react-markdown";
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
