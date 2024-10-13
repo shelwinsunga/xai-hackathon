@@ -4,21 +4,21 @@ import { MDXContent } from "@content-collections/mdx/react";
 import { Button } from "@/components/ui/button";
 import FRQ from "@/components/frq";
 import { formatDate } from "@/app/example/utils";
+import Link from "next/link";
 const components = { FRQ };
 
 export default function App() {
-
   return (
     <div className="flex items-center justify-center min-h-[60vh]">
       <div className="w-full px-4">
-      <ul>
+        <ul>
           {allPosts.map((post) => (
             <li key={post._meta.path} className="mb-8">
-              <h1 className="text-3xl font-bold mb-4">{post.title}</h1>
+              <Link href={`/course/${post._meta.path}`}>
+                <h1 className="text-3xl font-bold mb-4">{post.title}</h1>
+              </Link>
+              {post.subtitle && <p className="text-lg text-muted-foreground mb-4">{post.subtitle}</p>}
               <p className="text-lg text-muted-foreground mb-4">By {post.author} • {formatDate(post.date || '')}</p>
-              <div className="prose">
-                <MDXContent code={post.mdx} components={components} />
-              </div>
             </li>
           ))}
         </ul>
