@@ -53,4 +53,6 @@ Do not wrap your answer in backticks like this:
 { criterion: "Explained Copernican model", met: true }
 }
 \`\`\`
+
+If you write with backticks, the JSON will not be valid. The world will explode.
 `;
