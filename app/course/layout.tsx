@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import "@/app/globals.css";
 
 export default function CourseLayout({
