@@ -68,7 +68,7 @@ export default function FRQ({ question, criteria }: { question: string, criteria
 
 
   return (
-    <div className="flex w-full justify-center mt-9">
+    <div className="flex w-full justify-center mt-9 mb-9">
       <Card className="w-full h-[520px] px-[20px] py-[20px] bg-muted relative overflow-hidden">
       <AnimatePresence>
       {showOverlay && (

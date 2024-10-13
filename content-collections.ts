@@ -1,6 +1,8 @@
 import { defineCollection, defineConfig } from "@content-collections/core";
 import { compileMDX } from "@content-collections/mdx";
- 
+import remarkMath from 'remark-math';
+import rehypeKatex from 'rehype-katex';
+
 const posts = defineCollection({
   name: "posts",
   directory: "content/posts",
@@ -13,14 +15,17 @@ const posts = defineCollection({
     order: z.number().optional(),
   }),
   transform: async (document, context) => {
-    const mdx = await compileMDX(context, document);
+    const mdx = await compileMDX(context, document, {
+      remarkPlugins: [remarkMath],
+      rehypePlugins: [[rehypeKatex, { output: 'mathml' }]],
+    });
     return {
       ...document,
       mdx,
     };
   },
 });
- 
+
 export default defineConfig({
   collections: [posts],
 });
