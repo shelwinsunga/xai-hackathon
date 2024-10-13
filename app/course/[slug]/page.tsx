@@ -3,7 +3,7 @@ import { allPosts } from "content-collections";
 import { MDXContent } from "@content-collections/mdx/react";
 import { Button } from "@/components/ui/button";
 import FRQ from "@/components/frq";
-import { formatDate } from "@/app/example/utils";
+import { formatDate } from "@/app/utils";
 import { useParams } from "next/navigation";
 
 const components = { FRQ };

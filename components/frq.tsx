@@ -3,8 +3,8 @@
 
 import { useState, KeyboardEvent, useEffect } from "react";
 import { Textarea } from "@/components/ui/textarea";
-import { parseIncompleteJSON } from "@/app/example/utils";
-import { generate } from '@/app/example/actions';
+import { parseIncompleteJSON } from "@/app/utils";
+import { generate } from '@/app/actions';
 import { readStreamableValue } from 'ai/rsc';
 import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from '@/components/ui/card';
