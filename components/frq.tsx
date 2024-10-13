@@ -67,8 +67,8 @@ export default function FRQ({ question, criteria }: { question: string, criteria
   };
 
   return (
-    <div className="flex w-full justify-center mt-9 mb-9">
-      <Card className="w-full h-[520px] px-[20px] py-[20px] bg-muted relative overflow-hidden">
+    <div className="flex w-full h-full justify-center mt-9 mb-9">
+      <Card className="w-full h-full  px-[20px] py-[20px] bg-muted relative overflow-hidden">
       <AnimatePresence>
       {showOverlay && (
         <motion.div
@@ -186,7 +186,7 @@ export default function FRQ({ question, criteria }: { question: string, criteria
             </div>
           </div>
         </CardContent>
-        <CardFooter className="mt-6 w-full border-t flex justify-center items-center pt-6">
+        <CardFooter className="mt-6 pb-0 w-full border-t flex justify-center items-center pt-6">
           <Button
             variant="outline"
             type="submit"
