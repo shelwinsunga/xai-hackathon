@@ -15,7 +15,6 @@ export default function Course() {
   const slug = params.slug as string;
   
   const post = allPosts.find(post => post._meta.path === `${slug}`);
-  console.log(allPosts);
 
   if (!post) {
     return <div>Post not found</div>;
@@ -26,7 +25,7 @@ export default function Course() {
       <div className="w-full px-4">
         <article className="mb-8">
           <span className="flex justify-between items-center">
-            <h1 className="text-3xl font-bold mb-4">{post.title}</h1>
+            <Link href="/" className="text-3xl font-bold mb-4 hover:underline">{post.title}</Link>
             <Button variant="ghost" className="text-muted-foreground underline" onClick={() => router.push('/')}>Back</Button>
           </span>
           <p className="text-lg text-muted-foreground mb-4">By {post.author} • {formatDate(post.date || '')}</p>

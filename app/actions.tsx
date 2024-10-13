@@ -19,6 +19,7 @@ export async function generate(question: string, answer: string, criteria: { [ke
     const { textStream } = await streamText({
       model: openai('grok-preview'),
       system: systemPrompt,
+      temperature: 0,
       prompt: `${question}\n\n${answer}\n\n${Object.entries(criteria).map(([criterion, description]) => `${criterion}: ${description}`).join('\n')}`,
     });
 

@@ -39,7 +39,8 @@ export default function FRQ({ question, criteria }: { question: string, criteria
   const [isGraded, setIsGraded] = useState(false);
   const [gradeSteps, setGradeSteps] = useState([]);
   const [gradeResults, setGradeResults] = useState([]);
-  console.log(gradeResults);
+  console.log(generation);
+  console.log(structuredOutput);
 
   useEffect(() => {
     setStructuredOutput(parseIncompleteJSON(generation));
@@ -81,7 +82,7 @@ export default function FRQ({ question, criteria }: { question: string, criteria
         animate={{ y: 0, opacity: 1 }}
         exit={{ y: -100, opacity: 0 }}
         transition={{ type: "spring", stiffness: 300, damping: 30 }}
-        className="absolute top-0 left-0 right-0 w-[93%] mx-auto bg-background/70 border shadow-sm text-foreground p-4 text-center rounded-md backdrop-blur-sm"
+        className="absolute top-0 left-0 right-0 w-[93%] mx-auto bg-background/70 border shadow-sm text-foreground p-4 text-center rounded-md backdrop-blur-sm z-[9999]"
         >
              <div className="flex flex-col items-start w-full">
                 <p className="text-base text-foreground/90 font-medium mb-2">Grade</p>
