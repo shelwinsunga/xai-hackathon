@@ -23,6 +23,11 @@ import {
     TooltipProvider,
     TooltipTrigger,
 } from "@/components/ui/tooltip"
+import ReactMarkdown from "react-markdown";
+import remarkMath from 'remark-math';
+import rehypeKatex from 'rehype-katex';
+import 'katex/dist/katex.min.css';
+
   
 
 export default function FRQ({ question, criteria }: { question: string, criteria: any }) {
@@ -173,7 +178,12 @@ export default function FRQ({ question, criteria }: { question: string, criteria
           <div className="flex flex-col justify-between h-full gap-6">
             <div className="w-full">
               <Label htmlFor="question" className="text-base font-medium w-full">
-                {question}
+                <ReactMarkdown
+                  remarkPlugins={[remarkMath]}
+                  rehypePlugins={[rehypeKatex]}
+                >
+                  {question}
+                </ReactMarkdown>
               </Label>
             </div>
             <div>
