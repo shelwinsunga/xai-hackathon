@@ -71,3 +71,13 @@ export function parseIncompleteJSON(incompleteJSON: string): any[] {
     };
   });
 }
+
+
+export function formatDate(date: string) {
+  const [year, month, day] = date.split('-');
+  const monthNames = [
+    'January', 'February', 'March', 'April', 'May', 'June',
+    'July', 'August', 'September', 'October', 'November', 'December'
+  ];
+  return `${monthNames[parseInt(month) - 1]} ${parseInt(day)}, ${year}`;
+}
