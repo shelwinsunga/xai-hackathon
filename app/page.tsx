@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { formatDate } from "./utils";
 import FRQ from "@/components/frq";
 import Link from "next/link";
-import meta from "./meta.json";
+import meta from "@/content/meta.json";
 import { toRoman } from "./utils";
 
 const components = { FRQ };
