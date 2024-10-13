@@ -1,14 +1,10 @@
 import { allPosts } from "content-collections";
-import { MDXContent } from "@content-collections/mdx/react";
-import { Button } from "@/components/ui/button";
 import { formatDate } from "./utils";
-import FRQ from "@/components/frq";
 import Link from "next/link";
 import meta from "@/content/meta.json";
 import { toRoman } from "./utils";
 
-const components = { FRQ };
-
+export const maxDuration = 30;
 
 export default function App() {
   const ordered = meta.ordered;
