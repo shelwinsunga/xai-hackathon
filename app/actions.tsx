@@ -2,22 +2,14 @@
 
 import { streamText } from 'ai';
 import { createStreamableValue } from 'ai/rsc';
-
-
-import { createOpenAI } from '@ai-sdk/openai';
-
-const openai = createOpenAI({
-    baseUrl: 'https://api.x.ai/v1/',
-    apiKey: process.env.XAI_API_KEY,
-});
-
+import { anthropic } from '@ai-sdk/anthropic';
 
 export async function generate(question: string, answer: string, criteria: { [key: string]: string }) {
   const stream = createStreamableValue('');
 
   (async () => {
     const { textStream } = await streamText({
-      model: openai('grok-preview'),
+      model: anthropic('claude-3-5-sonnet-20240620'),
       system: systemPrompt,
       temperature: 0,
       prompt: `${question}\n\n${answer}\n\n${Object.entries(criteria).map(([criterion, description]) => `${criterion}: ${description}`).join('\n')}`,
